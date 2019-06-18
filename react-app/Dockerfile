@@ -1,8 +1,14 @@
-FROM node:8
-RUN npm run build
+FROM node:10.16.0
 
-WORKDIR /app
-ADD . /app
+# Create app directory
+WORKDIR /usr/src/app
+
+# Bundle app source
+COPY . .
+
+RUN npm install --verbose
+
+RUN npm run build
 
 EXPOSE 3000
 EXPOSE 35729
